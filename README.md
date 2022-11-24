@@ -7,6 +7,10 @@ Bulid: **19045.2251**
 Program: **Winbox** \
 Download date: **10/23/2022**
 
+### VIDEO
+
+[VIDEO](https://www.youtube.com/watch?v=vKZFn9Fng2Q)
+
 [Connecting and reseting configuration or setting factory default](#connecting-and-reseting-configuration-or-setting-factory-default)
   1. [We've never used mikrotik device before](#weve-never-used-mikrotik-device-before)
   2. [Somebody used mikrotik router board and we know login and password of user with full permissions](#somebody-used-mikrotik-router-board-and-we-know-login-and-password-of-user-with-full-permissions)
