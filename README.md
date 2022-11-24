@@ -7,7 +7,7 @@ Bulid: **19045.2251**
 Program: **Winbox** \
 Download date: **10/23/2022**
 
-[go to heading](#### Connecting and reseting configuration or setting factory default)
+[Connecting and reseting configuration or setting factory default](####Connecting_and_reseting_configuration_or_setting_factory_default)
 
 #### Connecting and reseting configuration or setting factory default
 First of all, we have to plugged our ethernet cabel from our pc to 2nd, 3rd or 4th port. Why not 1st? By default configuration the 1st port is not available for connecting to admin panel and configuring, by firewall. Then we will start our program ```Winbox```. By default we should see the router board available in the list of available devices. If you can't see the available Mikrotik device below, you can just connect to it by it's MAC address, which is at the back of device. For example:
