@@ -1,4 +1,4 @@
-# nov/24/2022 01:55:43 by RouterOS 6.48.6
+# nov/24/2022 12:19:47 by RouterOS 6.48.6
 # software id = 041D-YP8G
 #
 # model = 750
@@ -32,7 +32,7 @@ add disabled=no interface=ether1
 /ip dhcp-server network
 add address=10.10.0.0/24 gateway=10.10.0.1 netmask=24
 /ip firewall address-list
-add address=10.10.0.10-10.10.0.254 list="allowed to router"
+add address=10.10.0.10-10.10.0.254 list=allowed_to_router
 add address=0.0.0.0/8 comment=RFC6890 list=not_in_internet
 add address=172.16.0.0/12 comment=RFC6890 list=not_in_internet
 add address=192.168.0.0/16 comment=RFC6890 list=not_in_internet
@@ -51,32 +51,15 @@ add address=192.88.99.0/24 comment="6to4 relay Anycast [RFC 3068]" list=\
     not_in_internet
 /ip firewall filter
 add action=accept chain=input connection-state=established,related
-add action=accept chain=input src-address-list="allowed to router"
+add action=accept chain=input src-address-list=allowed_to_router
 add action=accept chain=input protocol=icmp
-add action=accept chain=icmp comment="echo reply" icmp-options=0:0 protocol=\
-    icmp
-add action=accept chain=icmp comment="net unreachable" icmp-options=3:0 \
-    protocol=icmp
-add action=accept chain=icmp comment="host unreachable" icmp-options=3:1 \
-    protocol=icmp
-add action=accept chain=icmp comment=\
-    "host unreachable fragmentation required" icmp-options=3:4 protocol=icmp
-add action=accept chain=icmp comment="allow echo request" icmp-options=8:0 \
-    protocol=icmp
-add action=accept chain=icmp comment="allow time exceed" icmp-options=11:0 \
-    protocol=icmp
-add action=accept chain=icmp comment="allow parameter bad" icmp-options=12:0 \
-    protocol=icmp
-add action=accept chain=forward comment="Established, Related" \
+add action=accept chain=forward connection-state=established,related
+add action=fasttrack-connection chain=forward comment=FastTrack \
     connection-state=established,related
 add action=drop chain=input in-interface=ether1
 add action=drop chain=forward in-interface=ether1 out-interface=bridge1
 add action=drop chain=input connection-state=invalid
 add action=drop chain=forward connection-state=invalid
-add action=fasttrack-connection chain=forward comment=FastTrack \
-    connection-state=established,related
-add action=drop chain=forward comment="Drop invalid" connection-state=invalid \
-    log=yes log-prefix=invalid
 add action=drop chain=forward comment=\
     "Drop tries to reach not public addresses from LAN" dst-address-list=\
     not_in_internet in-interface=bridge1 log=yes log-prefix=!public_from_LAN \
@@ -92,8 +75,24 @@ add action=drop chain=forward comment=\
 add action=drop chain=forward comment=\
     "Drop packets from LAN that do not have LAN IP" in-interface=bridge1 log=\
     yes log-prefix=LAN_!LAN src-address=!10.10.0.0/24
+add action=accept chain=icmp comment="echo reply" icmp-options=0:0 protocol=\
+    icmp
+add action=accept chain=icmp comment="net unreachable" icmp-options=3:0 \
+    protocol=icmp
+add action=accept chain=icmp comment="host unreachable" icmp-options=3:1 \
+    protocol=icmp
+add action=accept chain=icmp comment=\
+    "host unreachable fragmentation required" icmp-options=3:4 protocol=icmp
+add action=accept chain=icmp comment="allow echo request" icmp-options=8:0 \
+    protocol=icmp
+add action=accept chain=icmp comment="allow time exceed" icmp-options=11:0 \
+    protocol=icmp
+add action=accept chain=icmp comment="allow parameter bad" icmp-options=12:0 \
+    protocol=icmp
 add action=drop chain=icmp comment="deny all other types"
 /ip firewall nat
 add action=masquerade chain=srcnat out-interface-list=WAN
 /system clock
 set time-zone-name=Europe/Prague
+/system package update
+set channel=long-term
