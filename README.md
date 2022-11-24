@@ -110,6 +110,7 @@ Now, we suppose to have basic configuration up. But let's check what we have con
   2. Then route with dst-address of my local network IP pool (10.10.0.0/24) through bridge1.
   3. And last route with, in my case, dst-address of main router local IP pool (192.168.0.0/24) through ether1 (1st port on my device).
 
+
 6. ##### NAT.
   - Go to ```IP - Firewall``` firstly to tab ```NAT```.
   - And this is where are hosts allowed on local area networks to use one set of IP addresses for internal communications and another set of IP addresses for external communications, basicaly when we did not set the Network Address Translation, our port won't receive the internet traffic (but our router will still be able to reach the internet network).
