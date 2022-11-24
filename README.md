@@ -106,9 +106,9 @@ Now, we suppose to have basic configuration up. But let's check what we have con
 
 5. ##### Routes.
   - Go to ```IP - Routes```. In my case I can see three routes:
-  1. default route - with dst-address 0.0.0.0/0 applies to every destination address, in my case the gateway is the automatic given IP (IP of main router) through ether1 (1st port on my device). Such route is called the default route. If routing table contains an active default route, then routing table lookup in this table will never fail.
-  2. Then route with dst-address of my local network IP pool (10.10.0.0/24) through bridge1.
-  3. And last route with, in my case, dst-address of main router local IP pool (192.168.0.0/24) through ether1 (1st port on my device).
+    - default route - with dst-address 0.0.0.0/0 applies to every destination address, in my case the gateway is the automatic given IP (IP of main router) through ether1 (1st port on my device). Such route is called the default route. If routing table contains an active default route, then routing table lookup in this table will never fail.
+    - Then route with dst-address of my local network IP pool (10.10.0.0/24) through bridge1.
+    - And last route with, in my case, dst-address of main router local IP pool (192.168.0.0/24) through ether1 (1st port on my device).
 
 
 6. ##### NAT.
